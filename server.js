@@ -26,13 +26,6 @@ const database = {
 	  	joined: new Date()
 	  }
 	]
-	/*login: [
-	  {
-	  	id: '987',
-	  	has: '',
-	  	email: 'john@gmail.com'
-	  }
-	]*/
 }
 
 app.get('/', (req, res) => {
@@ -40,25 +33,20 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
-	/*bcrypt.compare("apples", '$2a$10$9diU.qFh4T7YEGWHcjhRZe1ga8H7kDTQHQsfxoLyiIr4vM9laAj6.', function(err, res) {
-	    console.log('first guess', res)
-	});
-	bcrypt.compare("veggies", '$2a$10$9diU.qFh4T7YEGWHcjhRZe1ga8H7kDTQHQsfxoLyiIr4vM9laAj6.', function(err, res) {
-	    console.log('second guess', res)
-	});*/
 	if (req.body.email === database.users[0].email && 
 		req.body.password === database.users[0].password) {
-	  res.json('success');
-	} else {
+	  res.json(database.users[0]);
+	} else if (req.body.email === database.users[1].email && 
+		req.body.password === database.users[1].password) {
+	 
+	  res.json(database.users[1]);
+	}else {
 		res.status(400).json('error logging in');
 	}
 })
 
 app.post('/register', (req, res) => {
 	const { email, name, password } = req.body;
-	/*bcrypt.hash(password, null, null, function(err, hash) {
-    	console.log(hash);
-	});*/
 	database.users.push({
 		id: '125',
 	  	name: name,
